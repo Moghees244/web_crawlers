@@ -8,6 +8,7 @@
 from itemadapter import ItemAdapter
 from Politifact.items import Video_Info
 from Politifact.items import FactCheck_Info
+from Politifact.items import ScoreBoard
 
 class PolitifactPipeline:
     def process_item(self, item, spider):
@@ -31,8 +32,6 @@ class FactCheckPipeline:
                 item['venue'] = self.remove_endline(item['venue']).replace(':', '')
             if 'truth_meter' in item:
                 item['truth_meter'] = self.get_truth_meter(item['truth_meter'])
-            if 'image_urls' in item:
-                item['image_urls'] = item['image_urls'].split("/")[-1]
 
         return item
     
@@ -51,3 +50,11 @@ class FactCheckPipeline:
         parts = word.split("-")     # Split word by -
         # Capitalize the first letter of each word and join them together
         return ' '.join([part.capitalize() for part in parts[1:]])
+    
+
+class ScoreBoardPipeline:
+    def process_item(self, item, spider):
+        if isinstance(item, ScoreBoard):
+            for attr in item:
+                item[attr] = item[attr].replace("Checks", '')
+        return item

@@ -31,6 +31,15 @@ class FactCheck_Info(scrapy.Item):
     description = scrapy.Field()
     sources = scrapy.Field()
 
+class ScoreBoard(scrapy.Item):
+    title = scrapy.Field()
+    true = scrapy.Field()
+    mostly_true = scrapy.Field()
+    half_true = scrapy.Field()
+    false = scrapy.Field()
+    mostly_false = scrapy.Field()
+    pants_on_fire = scrapy.Field()
+
 class ImageItem(scrapy.Item):
     image_urls = scrapy.Field()
     images = scrapy.Field()

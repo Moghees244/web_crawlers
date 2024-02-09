@@ -63,14 +63,15 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
+    "scrapy.pipelines.images.ImagesPipeline": 1,
     "Politifact.pipelines.PolitifactPipeline": 300,
     "Politifact.pipelines.VideoPipeline": 400,
     "Politifact.pipelines.FactCheckPipeline":600,
-    "scrapy.pipelines.images.ImagesPipeline": 200,
+    "Politifact.pipelines.ScoreBoardPipeline":500,
 }
 
-IMAGES_STORE = "../../Images"
-IMAGES_URLS_FIELD = "image_url"
+IMAGES_STORE = "images"
+IMAGES_URLS_FIELD = "image_urls"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
