@@ -40,6 +40,16 @@ class ScoreBoard(scrapy.Item):
     mostly_false = scrapy.Field()
     pants_on_fire = scrapy.Field()
 
+class Article_Info(scrapy.Item):
+    title = scrapy.Field()
+    image_urls = scrapy.Field()
+    categories = scrapy.Field()
+    author = scrapy.Field()
+    publish_date = scrapy.Field()
+    description = scrapy.Field()
+    sources = scrapy.Field()
+    
+
 class ImageItem(scrapy.Item):
     image_urls = scrapy.Field()
     images = scrapy.Field()

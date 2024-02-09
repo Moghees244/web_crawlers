@@ -68,6 +68,7 @@ ITEM_PIPELINES = {
     "Politifact.pipelines.VideoPipeline": 400,
     "Politifact.pipelines.FactCheckPipeline":600,
     "Politifact.pipelines.ScoreBoardPipeline":500,
+    "Politifact.pipelines.ArticlePipeline":700,
 }
 
 IMAGES_STORE = "images"
