@@ -1,6 +1,6 @@
 import scrapy
 from Politifact.items import FactCheck_Info
-
+from Politifact.utils import preprocess_image_urls
 
 class FactchecksSpiderSpider(scrapy.Spider):
     name = "factchecks_spider"
@@ -35,7 +35,7 @@ class FactchecksSpiderSpider(scrapy.Spider):
         fact_check = FactCheck_Info()
         
         fact_check['personality'] = response.xpath("//a[@class='m-statement__name']/text()").get()
-        fact_check['image_urls'] = self.preprocess_image_urls(response.xpath("//div[@class='c-image']/img/@src").extract())
+        fact_check['image_urls'] = preprocess_image_urls(response.xpath("//div[@class='c-image']/img/@src").extract())
         fact_check['venue'] = response.xpath("//div[@class='m-statement__desc']/text()").get()
         fact_check['statement'] = response.xpath("//div[@class='m-statement__quote']/text()").get()
         fact_check['truth_meter'] = response.xpath("//div[@class='m-statement__meter']//picture/img/@src").get()
@@ -46,14 +46,3 @@ class FactchecksSpiderSpider(scrapy.Spider):
         fact_check['sources'] = response.xpath("//section[@id='sources']//article/p/a/text()").extract()
 
         return fact_check
-    
-    def preprocess_image_urls(self, image_urls):
-        processed_urls = []
-        for url in image_urls:
-            if not url:
-                continue
-            if not url.startswith(('http://', 'https://')):
-                url = 'https://' + url
-
-            processed_urls.append(url)
-        return processed_urls
