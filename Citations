@@ -3,3 +3,8 @@ Politifact:
 "Assistance with image downloading task. Helped troubleshoot issues." OpenAI ChatGPT.
 
 Mastodon:
+"Scrapy Pipelines for Cleaning data." OpenAI ChatGPT.
+"Wrote get_post_info and get_account_info functions." OpenAI ChatGPT.
+
+Alt News:
+"Whole code" OpenAI ChatGPT
